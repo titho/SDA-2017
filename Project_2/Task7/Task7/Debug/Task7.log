@@ -1,0 +1,4 @@
+﻿  Task7_.cpp
+c:\users\panda\source\repos\sda-2017\task7\task7\task7_.cpp(91): warning C4715: 'Tree<int>::tournamentArrayHelper': not all control paths return a value
+  Task7.vcxproj -> C:\Users\Panda\Source\Repos\SDA-2017\Task7\Debug\Task7.exe
+  Task7.vcxproj -> C:\Users\Panda\Source\Repos\SDA-2017\Task7\Debug\Task7.pdb (Partial PDB)

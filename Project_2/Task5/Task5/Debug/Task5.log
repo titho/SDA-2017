@@ -1,0 +1,9 @@
+﻿  Task5.cpp
+c:\users\panda\source\repos\sda-2017\task5\task5\task5.cpp(185): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  c:\users\panda\source\repos\sda-2017\task5\task5\task5.cpp(211): note: see reference to function template instantiation 'void fillTree<int>(std::vector<int,std::allocator<_Ty>>,CompleteBinTree<int> &)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  Task5.vcxproj -> C:\Users\Panda\Source\Repos\SDA-2017\Task5\Debug\Task5.exe
+  Task5.vcxproj -> C:\Users\Panda\Source\Repos\SDA-2017\Task5\Debug\Task5.pdb (Partial PDB)
