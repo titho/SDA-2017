@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Garage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cars.cpp">
+    <ClCompile Include="Task5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

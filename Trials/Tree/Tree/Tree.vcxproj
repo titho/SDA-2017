@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9C3D393F-89FE-4619-B135-8982FC56470C}</ProjectGuid>
-    <RootNamespace>Project_1</RootNamespace>
+    <ProjectGuid>{54F831AA-5697-43AA-9553-AEE2BFE21058}</ProjectGuid>
+    <RootNamespace>Tree</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -110,8 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cars.cpp" />
-    <ClCompile Include="Garage.cpp" />
+    <ClCompile Include="SmokeTrees.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
