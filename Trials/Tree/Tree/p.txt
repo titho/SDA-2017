@@ -1,0 +1,4 @@
+ivan 1
+spas 2 
+gosho 3
+stamat 4

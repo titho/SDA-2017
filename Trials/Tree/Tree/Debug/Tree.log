@@ -1,4 +1,10 @@
 ﻿  SmokeTrees.cpp
-c:\users\panda\source\repos\sda-2017\tree\tree\smoketrees.cpp(100): warning C4715: 'BinTree<int>::insert_helper': not all control paths return a value
-  Tree.vcxproj -> C:\Users\Panda\Source\Repos\SDA-2017\Tree\Debug\Tree.exe
-  Tree.vcxproj -> C:\Users\Panda\Source\Repos\SDA-2017\Tree\Debug\Tree.pdb (Partial PDB)
+c:\users\panda\source\repos\sda-2017\trials\tree\tree\smoketrees.cpp(281): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\panda\source\repos\sda-2017\trials\tree\tree\smoketrees.cpp(224): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  c:\users\panda\source\repos\sda-2017\trials\tree\tree\smoketrees.cpp(406): note: see reference to function template instantiation 'void fillTree<Participant>(std::vector<Participant,std::allocator<_Ty>>,Tree<Participant> &)' being compiled
+          with
+          [
+              _Ty=Participant
+          ]
+c:\users\panda\source\repos\sda-2017\trials\tree\tree\smoketrees.cpp(225): warning C4018: '<': signed/unsigned mismatch
+LINK : fatal error LNK1104: cannot open file 'C:\Users\Panda\Source\Repos\SDA-2017\Trials\Tree\Debug\Tree.exe'

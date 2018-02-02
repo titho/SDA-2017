@@ -1,5 +1,6 @@
 #include<iostream>
 #include<queue>
+#include<time.h>
 
 using namespace std;
 
@@ -7,26 +8,52 @@ template<class T>
 struct Node
 {
 	T data;
+	int win;
 	Node<T> *left, *right;
 
-	Node(int data)
+	Node<T>()
+	{
+		
+		left = NULL;
+		right = NULL;
+	}
+	Node<T>(int data)
 	{
 		this->data = data;
 		left = NULL;
 		right = NULL;
+	}
+	Node<T>(const Node<T>& n)
+	{
+		this->data = n->data;
+		left = n->data;
+		right = n->data;
+	}
+	Node<T>& operator=(const Node<T>& n)
+	{
+		if(this != &n)
+		{ 
+			delete left;
+			delete right;
+			left = new Node<T>;
+			right = new Node<T>;
+			this->data = n->data;
+			left = n->data;
+			right = n->data;
+		}
+		return *this;
 	}
 };
 
 template<class T>
 class Tree
 {
-	int static const MAX_PLAYERS = 256;
 	Node<T>* root;
 	queue<Node<T>*> q;
 	void printHelpBFS(Node<T>* _root);
 	void printHelpDFS(Node<T>* _root);
-	Node<T>* tournamentArrayHelper(int n, Node<T>* arr1[MAX_PLAYERS], T arr2[MAX_PLAYERS]);
-	int tournamentHelper(Node<T> *root, Node<T>* arr1[MAX_PLAYERS], T* arr2, int i);
+	int name(int n, Node<T>*);
+	int tournamentHelper(Node<T> *root);
 public:
 	Tree();
 	void addNode(Node<T> *);
@@ -34,7 +61,7 @@ public:
 	void delTree(Node<T> *_root);
 	void printBFS();
 	void printDFS();
-	Node<T>* tournament();
+	int tournament();
 };
 
 
@@ -75,51 +102,6 @@ void Tree<T>::printHelpDFS(Node<T>* _root)
 		printHelpDFS(_root->right);
 	}
 }
-
-template<class T>
-Node<T>* Tree<T>::tournamentArrayHelper(int n, Node<T>* arr1[MAX_PLAYERS], T arr2[MAX_PLAYERS])
-{
-	int k = sizeof(arr1) / sizeof(arr1[0]);
-	for (int i = 0; i < k; i++)
-	{
-		if (arr2[i] == n)
-		{
-			return arr1[i];
-		}
-		return 0;
-	}
-}
-
-template<class T>
-int Tree<T>::tournamentHelper(Node<T>* root, Node<T>* arr1[MAX_PLAYERS], T * arr2, int i)
-{
-	if (root == NULL)
-	{
-		return 0;
-	}
-	if (root->left == NULL && root->right == NULL) {
-		cout << "This one is " << root->data << endl;
-		arr1[i] = root;
-		int k = rand() % (root->data * 2 + 1) + root->data*(-1);
-		arr2[i] = k;
-
-		return k;
-	}
-	//
-	//if (root->left != NULL)
-		//cout << "This one is ->left and " << root->left->data << endl;
-		int firstNumber = tournamentHelper(root->left, arr1, arr2, i++);
-
-	//if(root->right != NULL)
-	//cout << "This one is ->right and " << root->right->data << endl;
-	int secondNumber = tournamentHelper(root->right, arr1, arr2, i++);
-	cout << firstNumber << " VS " << secondNumber << endl;
-
-	if (firstNumber>secondNumber)
-		return firstNumber;
-	return secondNumber;
-}
-
 
 template<class T>
 void Tree<T>::addNode(Node<T>* newNode)
@@ -184,21 +166,65 @@ void Tree<T>::printDFS()
 }
 
 template<class T>
-Node<T>* Tree<T>::tournament()
+int Tree<T>::tournamentHelper(Node<T>* root)
 {
-	Node<T>* arr1[MAX_PLAYERS];
-	T arr2[MAX_PLAYERS] = { 0 };
-	int i = 0;
-	int n = tournamentHelper(root, arr1, arr2, i);
-	return tournamentArrayHelper(n, arr1, arr2);
+	if (root == NULL)
+	{
+		return 0;
+	}
+	if (root->left == NULL && root->right == NULL) {
+		int k = rand() % (root->data * 2 + 1) + root->data*(-1);
+		root->win = k;
+		return k;
+	}
+
+	int firstNumber = tournamentHelper(root->left);
+
+	int secondNumber = tournamentHelper(root->right);
+
+	if (firstNumber>secondNumber)
+		return firstNumber;
+	return secondNumber;
 }
+
+template <class T>
+int Tree<T>::name(int n, Node<T>* _root)
+{
+	if (_root)
+	{
+		queue<Node<T>*> q;
+		q.push(_root);
+		while (!q.empty())
+		{
+			Node<T> *helper = q.front();
+			q.pop();
+			if (helper->win == n)
+			{
+				return helper->data;
+			}
+			if (helper->left)
+				q.push(helper->left);
+			if (helper->right)
+				q.push(helper->right);
+		}
+	}
+}
+
+template<class T>
+int Tree<T>::tournament()
+{
+	srand(time(0));
+	int n = tournamentHelper(root);
+	return name(n, root);
+}
+
 
 int main()
 {
 	Tree<int> t;
 	t.createTree();
-	t.tournament();
-
+	cout << t.tournament();
+	cout << endl;
 	system("pause");
 	return 0;
 }

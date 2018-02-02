@@ -1,8 +1,5 @@
-// trii.cpp : Defines the entry point for the console application.
+// zadacha6.cpp : Defines the entry point for the console application.
 //
-
-#include "stdafx.h"
-
 
 #include <iostream>
 #include <string>
@@ -10,7 +7,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
-
+#include <sstream>
 using namespace std;
 
 struct Participant
@@ -21,7 +18,7 @@ struct Participant
 
 vector<Participant> readParticipants(ifstream& file)
 {
-	file.open("participants.txt");
+	file.open("p.txt");
 
 	if (!file)
 	{
@@ -32,14 +29,28 @@ vector<Participant> readParticipants(ifstream& file)
 	vector<Participant> allParticipants;
 	while (!file.eof())
 	{
-		Participant p;
-		getline(file, p.name, ' ');
+		Participant a;
+
+		while (file.peek() != ' ' && file.peek() != '\t')
+		{
+			char c;
+			file >> c;
+			a.name += c;
+		}
+
+		while (file.peek() == ' ' || file.peek() == '\t')
+		{
+			file.get();
+		}
+
 		string sCoefficient;
 		getline(file, sCoefficient); // !!! now p.coefficient is string
-									 // std::stoi was introduced in C++11. Make sure your compiler settings are correct and/or your compiler supports C++11
-		p.coefficient = stoi(sCoefficient); // convert string coeff to int
-											// store the participant
-		allParticipants.push_back(p);
+
+
+
+		stringstream ss(sCoefficient);
+		ss >> a.coefficient;
+		allParticipants.push_back(a);
 	}
 
 	file.close();
@@ -65,9 +76,12 @@ vector<Participant> readParticipants(ifstream& file)
 int main()
 {
 	ifstream file;
-	//myFile.open("participants.txt");
 	vector<Participant> result = readParticipants(file);
 	for (int i = 0; i < result.size(); i++)
-		cout << "Name: " << result[i].name << "\n Coefficient: " << result[i].coefficient << endl;
+	{
+		cout << "Name: " << result[i].name << endl;
+		cout << "Coefficient: " << result[i].coefficient << endl;
+	}
+
 	return 0;
 }
