@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <fstream>
 #include <string>
@@ -48,7 +49,7 @@ struct Node
 			delete right;
 			left = new Node<T>;
 			right = new Node<T>;
-			this->p.coefficient = n.p.coefficient
+			this->p.coefficient = n.p.coefficient;
 				this->p.name = n.p.name;
 			left = n->left;
 			right = n->right;
@@ -376,7 +377,7 @@ int main()
 	Tree<Participant> t;
 
 	fillTree(a, t);
-	cout << t.tournament();
+	cout << t.tournament() << endl;
 
 	system("pause");
 	return 0;
